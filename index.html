@@ -1,19 +1,36 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Socket.IO chat</title>
-    <link rel="stylesheet" href="/css/index.css">
-  </head>
+
+<head>
+  <title>Socket.IO chat</title>
+  <link rel="stylesheet" href="/css/index.css">
+</head>
 
 
-  <body>
-    <ul id="messages"></ul>
-    <form onsubmit="return sendMessage()">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
-    <!-- umbedingt ändern wenn es soweit ist -->
-    <script src="/js/socket.io.js"></script>
-    <script src="/js/client.js"></script>
+<body>
+  <div class="emojis">
+    <h4>Select Emoji:</h4>
+    <img src="/img/01.png" id="emoji1" class="icon" alt="">
+    <img src="/img/2.png" id="emoji2" class="icon" alt="">
+    <img src="/img/3.png" id="emoji3" class="icon" alt="">
+    <img src="/img/4.png" id="emoji4" class="icon" alt="">
+    <img src="/img/5.png" id="emoji5" class="icon" alt="">
+    <img src="/img/6.png" id="emoji6" class="icon" alt="">
+    <img src="/img/7.png" id="emoji7" class="icon" alt="">
+    <img src="/img/8.png" id="emoji8" class="icon" alt="">
+  </div>
+  
+  <ul id="messages"></ul>
+  
+  <form onsubmit="return sendMessage()">
+    <input id="m" autocomplete="off" /><button>Send</button>
+  </form>
+  <!-- umbedingt ändern wenn es soweit ist -->
+  <script src="/js/socket.io.js"></script>
+  <script src="/js/client.js"></script>
 
-  </body>
+
+  
+</body>
+
 </html>
