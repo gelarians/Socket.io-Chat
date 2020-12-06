@@ -3,7 +3,7 @@
 var server = "http://127.0.0.1:3000/"
 var io = io(server)
 
-const username = prompt("Pick username")
+const username = "David"//prompt("Pick username")
 
 const emojis = document.getElementsByClassName("icon")
 
@@ -27,17 +27,30 @@ function sendMessage(){
     return false
 }
 
+function delete_message(self){
+    const id = self.getAttribute("data-id")
+    //console.log(id)
+    io.emit("delete_message", id)
+}
+io.on("delete_message", function(id){
+    const message = document.getElementById("message-"+id)
+    message.innerHTML = "This message has been removed!"
+
+})
 
 // Hört vom server auf das event new_massage
-io.on("new_massage", function(data, username){
-    console.log("server says: ", data, username)
+io.on("new_massage", function(obj){
+    //console.log("server says: ", obj)
+
     // Zeige message an
     const li = document.createElement("li")
     const div = document.createElement("div")
-    div.innerHTML = `<span style="color: green">${username}</span>: ${data}`
-    div.innerHTML += '<button style="color:red">delete</button>'
+    div.id = `message-${obj.id}`
+    div.innerHTML = `<span style="color: green">${obj.username}</span>: ${obj.massage}`
+    div.innerHTML += `<button data-id="${obj.id}" onclick="delete_message(this)" style="color:red">delete</button>`
     li.append(div)
-    console.log(li.innerHTML)
+    //console.log(li.innerHTML)
     const messages = document.getElementById("messages")
     messages.append(li)
 })
+
